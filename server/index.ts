@@ -34,10 +34,12 @@ app.post("/capture", async (req: Request, res: Response) => {
       `${__dirname}/screenshots`,
       `screenshot-${timestamp}.png`
     );
+    const fp = path.join(`${__dirname}/screenshots`, `screen1.png`);
+
     fs.writeFileSync(filePath, imgBuffer);
 
     const data = await analyzeImageByIA({
-      filePath,
+      filePath: fp,
       prompt,
     });
 
